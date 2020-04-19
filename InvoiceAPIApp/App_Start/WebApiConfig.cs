@@ -1,11 +1,5 @@
-﻿using InvoiceAPIApp.Repository.Invoice;
-using InvoiceAPIApp.Services.InvoiceService;
-using InvoiceAPIApp.Services.PurchaseOrderService;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
+using Unity;
 
 namespace InvoiceAPIApp
 {
@@ -22,15 +16,12 @@ namespace InvoiceAPIApp
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            // Tutaj dodaje sie Serwisy/Repozytoria do wstrzykniecia
+            var container = DependencyInjectionContainerHandler.setupContainer(new UnityContainer());
+
+            config.DependencyResolver = new UnityResolver(container);
         }
-    }
-    public void ConfigureServices(IServiceCollection services)
-    {
-        services.AddSingleton<InvoiceRepository>();
-        services.AddSingleton<InvoiceService>();
 
-        services.AddSingleton<PurchaseOrderRepository>();
-        services.AddSingleton<PurchaseOrderService>();
     }
-
 }

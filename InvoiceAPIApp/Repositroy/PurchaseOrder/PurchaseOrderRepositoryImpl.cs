@@ -27,7 +27,7 @@ namespace InvoiceAPIApp.Repository.Invoice
         // TO Tez do usniecia
         private int getIncrementedID()
         {
-            udajeZeJestemWygenerowanymID += udajeZeJestemWygenerowanymID;
+            udajeZeJestemWygenerowanymID = udajeZeJestemWygenerowanymID + 1;
             return udajeZeJestemWygenerowanymID;
         }
 
