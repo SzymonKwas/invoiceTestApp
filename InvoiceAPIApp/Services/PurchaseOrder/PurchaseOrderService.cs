@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace InvoiceAPIApp.Services.PurchaseOrderService
 {
-    interface IPurchaseOrderService
+    public interface PurchaseOrderService
     {
         List<PurchaseOrder> getAllPurchaseOrders();
+        PurchaseOrder createPurchaseOrder(PurchaseOrder purchaseOrder);
+
+        PurchaseOrder getPurchaseOrderById(int Id);
     }
 }

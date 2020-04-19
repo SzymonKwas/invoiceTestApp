@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InvoiceAPIApp.Services.Invoice
+namespace InvoiceAPIApp.Repository.Invoice
 {
-    interface IInvoiceReposiory
+    public interface InvoiceRepository
     {
     }
 }

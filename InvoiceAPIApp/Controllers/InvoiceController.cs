@@ -1,4 +1,5 @@
 ﻿using InvoiceAPIApp.Models;
+using InvoiceAPIApp.Services.InvoiceService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,19 +11,26 @@ namespace InvoiceAPIApp.Controllers
 {
     public class InvoiceController : ApiController
     {
-        // GET: api/Invoice
+
+        private readonly InvoiceService _invoiceService;
+
+        public InvoiceController(InvoiceService invoiceService)
+        {
+            _invoiceService = invoiceService;
+        }
+
         public List<Invoice> Get()
         {
             return new List<Invoice>();
         }
 
-        // GET: api/Invoice/5
+        
         public Invoice Get(int id)
         {
             return null;
         }
 
-        // POST: api/Invoice
+        
         public void Post([FromBody]Invoice value)
         {
         }

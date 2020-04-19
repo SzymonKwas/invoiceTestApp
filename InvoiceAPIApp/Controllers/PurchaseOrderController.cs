@@ -1,4 +1,5 @@
 ﻿using InvoiceAPIApp.Models;
+using InvoiceAPIApp.Services.PurchaseOrderService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,21 +11,30 @@ namespace InvoiceAPIApp.Controllers
 {
     public class PurchaseOrderController : ApiController
     {
-        // GET: api/PurchaseOrder
+
+        private readonly PurchaseOrderService _purchaseOrderService;
+
+        public PurchaseOrderController(PurchaseOrderService purchaseOrderService)
+        {
+            _purchaseOrderService = purchaseOrderService;
+        }
+
+
         public List<PurchaseOrder> Get()
         {
-            return new List<PurchaseOrder>();
+            return _purchaseOrderService.getAllPurchaseOrders();
         }
 
-        // GET: api/PurchaseOrder/5
+        
         public PurchaseOrder Get(int id)
         {
-            return null;
+            return _purchaseOrderService.getPurchaseOrderById(id);
         }
 
-        // POST: api/PurchaseOrder
-        public void Post([FromBody]PurchaseOrder value)
+       
+        public PurchaseOrder Post([FromBody]PurchaseOrder value)
         {
+            return _purchaseOrderService.createPurchaseOrder(value);
         }
 
 
