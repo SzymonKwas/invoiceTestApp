@@ -32,10 +32,13 @@ namespace InvoiceAPIApp
 
             //// Ustawienie rozwinietego serializera XmlSerializer zamiast domyslnego DataContractSerializer
             // bez tego odczytana wartosc w requescie bedzie null
-            var xml = GlobalConfiguration.Configuration.Formatters.XmlFormatter;
-            xml.UseXmlSerializer = true;
-            xml.SetSerializer<Invoice>(new XmlSerializer(typeof(Invoice)));
-            config.Formatters.Add(xml);
+            //var xml = GlobalConfiguration.Configuration.Formatters.XmlFormatter;
+            //xml.UseXmlSerializer = true;
+            //xml.SetSerializer<Invoice>(new XmlSerializer(typeof(Invoice)));
+            //config.Formatters.Add(xml);
+
+
+            config.Formatters.Insert(0, new InvoiceXmlFormatter());
 
         }
 
