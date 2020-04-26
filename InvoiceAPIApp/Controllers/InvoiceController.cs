@@ -27,12 +27,14 @@ namespace InvoiceAPIApp.Controllers
         
         public Invoice Get(int id)
         {
-            return null;
+            return new Invoice(1, "pole1", "pole2","pole3");
         }
 
         
-        public void Post([FromBody]Invoice value)
+        public HttpResponseMessage Post([FromBody]Invoice value)
         {
+            System.Diagnostics.Debug.WriteLine(value);
+            return Request.CreateResponse(HttpStatusCode.OK, value);
         }
 
     }

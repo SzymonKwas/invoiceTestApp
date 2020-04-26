@@ -1,4 +1,7 @@
-﻿using System.Web.Http;
+﻿using InvoiceAPIApp.Controllers.Formatter;
+using InvoiceAPIApp.Models;
+using System.Web.Http;
+using System.Xml.Serialization;
 using Unity;
 
 namespace InvoiceAPIApp
@@ -21,6 +24,19 @@ namespace InvoiceAPIApp
             var container = DependencyInjectionContainerHandler.setupContainer(new UnityContainer());
 
             config.DependencyResolver = new UnityResolver(container);
+
+
+            // Konfiguracja XML Serializer
+            config.Formatters.Remove(config.Formatters.JsonFormatter); // usuniecie serializera JSON
+
+
+            //// Ustawienie rozwinietego serializera XmlSerializer zamiast domyslnego DataContractSerializer
+            // bez tego odczytana wartosc w requescie bedzie null
+            var xml = GlobalConfiguration.Configuration.Formatters.XmlFormatter;
+            xml.UseXmlSerializer = true;
+            xml.SetSerializer<Invoice>(new XmlSerializer(typeof(Invoice)));
+            config.Formatters.Add(xml);
+
         }
 
     }
