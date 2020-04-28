@@ -32,9 +32,12 @@ namespace InvoiceAPIApp.Controllers
 
         
         public HttpResponseMessage Post([FromBody]Invoice value)
-        {
+        {   
             System.Diagnostics.Debug.WriteLine(value);
-            return Request.CreateResponse(HttpStatusCode.OK, value);
+            
+            var response = Request.CreateResponse(HttpStatusCode.OK, value);
+            response.Headers.Add("Jakistamheader2", "Jakaswartoscstring2");
+            return response;
         }
 
     }
