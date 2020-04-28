@@ -1,4 +1,5 @@
-﻿using InvoiceAPIApp.Controllers.Formatter;
+﻿using InvoiceAPIApp.App_Start;
+using InvoiceAPIApp.Controllers.Formatter;
 using InvoiceAPIApp.Models;
 using System.Web.Http;
 using System.Xml.Serialization;
@@ -39,6 +40,7 @@ namespace InvoiceAPIApp
 
 
             config.Formatters.Insert(0, new InvoiceXmlFormatter());
+            config.MessageHandlers.Add(new Interceptor());
 
         }
 
